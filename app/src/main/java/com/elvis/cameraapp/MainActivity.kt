@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val permissionGranted = requestCameraPermission()
         btnOpenCamera.setOnClickListener {
             //opening the camera if the permission has been granted
-            if (permissionGranted) {
+            //if (permissionGranted) {
                 //Open the camera
                 val values = ContentValues()
                 values.put(MediaStore.Images.Media.TITLE, "My Image")
@@ -39,14 +39,14 @@ class MainActivity : AppCompatActivity() {
                 val intentToOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 intentToOpenCamera.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
                 startActivityForResult(intentToOpenCamera, IMAGE_CAPTURED)
-            }
+            //}
 
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RESULT_OK && resultCode == IMAGE_CAPTURED) {
+        if (resultCode == RESULT_OK && requestCode == IMAGE_CAPTURED) {
             imgView?.setImageURI(imageUri)
         }else {
             showAlert("Oops, Something went wrong")
